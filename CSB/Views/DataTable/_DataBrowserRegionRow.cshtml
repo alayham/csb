@@ -1,0 +1,49 @@
+﻿@using CSB.Models
+@model int
+
+@{
+    DataValue[] data = Data.rawData.data;
+    bool summaryRow = Data.IsSummaryRow(data[Model].Key[0]);
+    string css = summaryRow ? "bg-info" : "";
+}
+
+@if (summaryRow && Model != 0)
+{
+    @Html.Raw("</div>");
+}
+<div class="row @(css) border-bottom rounded">
+    <div class="col col-md-2">
+        @if (summaryRow)
+        {
+            <div type="button" class="btn btn-outline btn-sm border-0" data-toggle="collapse" data-target="#region-@(data[Model].Key[0])" aria-expanded="false" aria-controls="region-@(data[Model].Key[0])">
+                @(Data.GetRegionName(data[Model].Key[0]))
+            </div>
+        }
+        else
+        {
+            @Html.ActionLink(Data.GetRegionName(data[Model].Key[0]), "Code", "Region", new { id = data[Model].Key[0] }, new { })
+        }
+        @if (Data.RegionCommentCache.ContainsKey(data[Model].Key[0]))
+        {
+            <sup class="badge-warning badge" data-toggle="tooltip" data-placement="top" title="@(Data.RegionCommentCache[data[Model].Key[0]])"> i </sup>
+        }
+    </div>
+    @for (int j = 0; j < 5; j++)
+    {
+        <div class="col-md-1 @(summaryRow ? "" : "bg-light")">
+            <div class="row no-gutters">
+                @Html.Partial("_DataCell", Data.rawData.data[Model + j])
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="row no-gutters">
+                @Html.Partial("_DataCell", Data.rawData.data[Model + j + 5])
+            </div>
+        </div>
+    }
+</div>
+
+@if (summaryRow)
+{
+    @Html.Raw("<div class=\"no-gutters collapse\" id=\"region-")@(data[Model].Key[0])@Html.Raw("\">")
+}

@@ -1,0 +1,33 @@
+﻿
+@using CSB.Models
+@model int
+
+@{
+    DataValue[] data = Data.rawData.data;
+    bool summaryRow = Data.IsSummaryRow(data[Model].Key[0]);
+    string css = summaryRow ? "bg-info" : "";
+}
+
+@if (summaryRow && Model != 1)
+{
+    @Html.Raw("</div>");
+}
+<div class="row @(css)">
+    <div class="col">
+        @if (summaryRow)
+        {
+            <div type="button" class="btn btn-outline btn-sm border-0" data-toggle="collapse" data-target="#region-@(data[Model].Key[0])" aria-expanded="false" aria-controls="region-@(data[Model].Key[0])">
+                @(Data.GetRegionName(data[Model].Key[0]))
+            </div>
+        }
+        else
+        {
+            @Html.ActionLink(Data.GetRegionName(data[Model].Key[0]), "Code", "Region", new { id = data[Model].Key[0] }, new { })
+        }
+    </div>
+</div>
+
+@if (summaryRow)
+{
+    @Html.Raw("<div class=\"no-gutters collapse\" id=\"region-")@(data[Model].Key[0])@Html.Raw("\">")
+}

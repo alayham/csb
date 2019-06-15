@@ -1,0 +1,41 @@
+﻿@using CSB.Models.ViewModels
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/chartist")
+</head>
+<body>
+    <div class="banner">
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            @Html.ActionLink("SCB Assignment", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    @Html.Partial("_MenuItem", new MenuItem("Data Table", "Index", "DataTable"))
+                    @Html.Partial("_MenuItem", new MenuItem("Data Browser", "DataBrowser", "DataTable"))
+                    @Html.Partial("_MenuItem", new MenuItem("By Region", "Index", "Region"))
+                </ul>
+            </div>
+        </nav>
+        @Html.Partial("_breadcrumbs")
+        <div class="body-content">
+            @RenderBody()
+            <hr />
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

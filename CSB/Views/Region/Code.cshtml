@@ -1,0 +1,22 @@
+﻿@using CSB.Models
+@using Newtonsoft.Json
+
+@model CSB.Models.ViewModels.RegionViewModel
+
+@{
+    DataValue[] data = Data.rawData.data;
+}
+<h1>Child birth data for  @(Model.Name)</h1>
+<h2 class="mt-5">Child birth data table for @(Model.Name) </h2>
+@Html.Partial("_RegionDataTable", Model)
+<h2 class="mt-5">Child birth graph by year and gender</h2>
+@Html.Partial("_RegionAllDataBarChart", Model)
+
+<div class="row mt-5">
+    <div class="col-12 col-md-6">
+        @Html.Partial("_RegionGenderLineChart", new { Years = Model.Years, data = Model.Men, Type = "Men", Name=Model.Name })
+    </div>
+    <div class="col-12 col-md-6">
+        @Html.Partial("_RegionGenderLineChart", new { Years = Model.Years, data = Model.Women, Type = "Women" , Name = Model.Name })
+    </div>
+</div>

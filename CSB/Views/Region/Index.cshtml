@@ -1,0 +1,33 @@
+﻿@using CSB.Models
+@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "Full Data Table";
+    DataValue[] data = Data.rawData.data;
+    Dictionary<string, List<int>> Hierarchy = Data.GetRegionHierachicalCache();
+
+}
+
+<div class="jumbotron">
+    <h1 class="display-4">Regional Birth Data</h1>
+    <p class="lead">Here you can view Birth statistics by region.</p>
+</div>
+@foreach (KeyValuePair<string, List<int>> item in Hierarchy)
+{
+    string RegionName = Data.GetRegionName(item.Key);
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title" type="button" data-toggle="collapse" data-target="#region-@(item.Key)" aria-controls="region-@(item.Key)">
+                @(RegionName)
+            </h5>
+            <ul id="region-@(item.Key)" class="collapse row list-unstyled">
+                @foreach (int index in item.Value)
+                {
+                    <li class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                        @Html.ActionLink(Data.GetRegionName(data[index].Key[0]), "Code", "Region", new { id = data[index].Key[0] }, new { })
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

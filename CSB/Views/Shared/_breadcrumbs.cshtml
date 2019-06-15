@@ -1,0 +1,16 @@
+﻿@if (ViewContext.RouteData.Values["controller"].ToString().ToLower() != "home")
+{
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Home", "Index", "Home")
+    </li>
+    <li class="breadcrumb-item">
+        @Html.ActionLink(ViewContext.RouteData.Values["controller"].ToString(), "Index")
+    </li>
+    <li class="breadcrumb-item active">
+        @Html.ActionLink(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["action"].ToString())
+    </li>
+</ol>
+
+}

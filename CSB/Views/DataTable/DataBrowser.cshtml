@@ -1,0 +1,19 @@
+﻿@using CSB.Models;
+
+@{
+    ViewBag.Title = "Full Data Table";
+    DataValue[] data = Data.rawData.data;
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="">
+    @Html.Partial("_DataTableHeader")
+    <div class="">
+        @for (int i = 0; i < Data.rawData.data.Count() ; i++)
+        {
+            @Html.Partial("_DataBrowserRegionRow", i)
+            i += 9;
+        }
+    </div>
+</div>

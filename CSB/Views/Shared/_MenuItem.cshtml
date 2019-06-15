@@ -1,0 +1,12 @@
+﻿@model CSB.Models.ViewModels.MenuItem
+@{ 
+    string css = "";
+    string action = Model.action;
+    if((ViewContext.RouteData.Values["action"].ToString() == Model.action) && (ViewContext.RouteData.Values["controller"].ToString() == Model.controller))
+    {
+        css = "active";
+    }
+}
+<li class="@(css)">
+    @Html.ActionLink( Model.title, Model.action, Model.controller, new { }, new { @class = "nav-link" })
+</li>

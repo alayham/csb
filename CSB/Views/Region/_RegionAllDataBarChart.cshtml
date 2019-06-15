@@ -1,0 +1,57 @@
+﻿@model CSB.Models.ViewModels.RegionViewModel
+@using Newtonsoft.Json
+
+<figure class="bg-light border">
+    <div id="bar-chart-full"></div>
+    <figcaption class="chart-legend row figure-caption">
+        <div class="col col-6">
+            <svg xmlns="http://www.w3.org/2000/svg" style="width:20px; height:20px;" xmlns:ct="http://gionkunz.github.com/chartist-js/ct">
+                <g xmlns="http://www.w3.org/2000/svg" class="ct-series ct-series-a" xmlns:ct="http://gionkunz.github.com/chartist-js/ct" ct:series-name="Women Births">
+                    <line class="ct-bar" x1="10" y1="0" x2="10" y2="20" ct:value="" />
+                </g>
+            </svg>
+            Men
+        </div>
+        <div class="col col-6">
+            <svg xmlns="http://www.w3.org/2000/svg" style="width:20px; height:20px;" xmlns:ct="http://gionkunz.github.com/chartist-js/ct">
+                <g xmlns="http://www.w3.org/2000/svg" class="ct-series ct-series-b" xmlns:ct="http://gionkunz.github.com/chartist-js/ct" ct:series-name="Women Births">
+                    <line class="ct-bar" x1="10" y1="0" x2="10" y2="20" ct:value="" />
+                </g>
+            </svg>
+            Women
+        </div>
+    </figcaption>
+</figure>
+<script>
+        var data = {
+            labels: @(JsonConvert.SerializeObject(Model.Years)),
+            series: [
+                {
+                    name: "Men Births",
+                    data: @(JsonConvert.SerializeObject(Model.Men))
+                },
+                {
+                    name: "Women Births",
+                    data: @(JsonConvert.SerializeObject(Model.Women))
+                }
+            ]
+        };
+
+var options = {
+  seriesBarDistance: 20
+};
+
+var responsiveOptions = [
+  ['screen and (max-width: 640px)', {
+    seriesBarDistance: 5,
+    axisX: {
+      labelInterpolationFnc: function (value) {
+        return value[0];
+      }
+    }
+  }]
+];
+
+new Chartist.Bar('#bar-chart-full', data, options, responsiveOptions);
+        </script>
+

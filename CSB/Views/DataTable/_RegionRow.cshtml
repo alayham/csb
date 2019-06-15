@@ -1,0 +1,39 @@
+﻿@using CSB.Models
+@model int
+
+@{
+    DataValue[] data = Data.rawData.data;
+    bool summaryRow = Data.IsSummaryRow(data[Model].Key[0]);
+    string css = summaryRow ? "bg-info" : "";
+}
+
+<div class="row @(css) border-bottom">
+    <div class="col-md-2">
+        @if (summaryRow)
+        {
+            @(Data.GetRegionName(data[Model].Key[0]))
+        }
+        else
+        {
+            @Html.ActionLink(Data.GetRegionName(data[Model].Key[0]), "Code", "Region", new { id = data[Model].Key[0] }, new { })
+        }
+        @if (Data.RegionCommentCache.ContainsKey(data[Model].Key[0]))
+        {
+            <sup class="badge-warning badge" data-toggle="tooltip" data-placement="top" title="@(Data.RegionCommentCache[data[Model].Key[0]])"> i </sup>
+        }
+    </div>
+    @for (int j = 0; j < 5; j++)
+    {
+        <div class="col-md-1 @(summaryRow ? "" : "bg-light")">
+            <div class="row no-gutters">
+                @Html.Partial("_DataCell", Data.rawData.data[Model + j])
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="row no-gutters">
+                @Html.Partial("_DataCell", Data.rawData.data[Model + j + 5])
+            </div>
+        </div>
+
+    }
+</div>

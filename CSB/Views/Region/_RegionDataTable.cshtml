@@ -1,0 +1,35 @@
+﻿@model CSB.Models.ViewModels.RegionViewModel
+
+<figure class="mb-5 bg-light">
+    <div class="row no-gutters">
+        <div class="col col-xs-4 col-sm-12">
+            <div class="row no-gutters">
+                <div class="col col-sm-2 bg-info text-center">Year</div>
+                @for (int year = Data.StartYear; year <= Data.EndYear; year++)
+                {
+                    <div class="col-sm-2 bg-info text-center border-right"> @(year) </div>
+                }
+            </div>
+        </div>
+        <div class="col col-xs-4 col-sm-12">
+            <div class="row no-gutters">
+                <div class="col col-sm-2 bg-info border-right  border-bottom ">Men</div>
+                @foreach (int value in Model.Men)
+                {
+
+                    <div class="col-sm-2 text-right  border-bottom  border-right">@(value)</div>
+                }
+            </div>
+        </div>
+        <div class="col col-xs-4 col-sm-12">
+            <div class="row no-gutters">
+                <div class="col col-sm-2 border-right bg-info  border-bottom">Women</div>
+                @foreach (int value in Model.Women)
+                {
+                    <div class="col-sm-2 text-right  border-bottom  border-right">@(value)</div>
+                }
+            </div>
+        </div>    
+
+    </div>
+</figure>

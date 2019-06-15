@@ -1,0 +1,24 @@
+﻿<div class="d-none d-md-block">
+    <div class="row text-center">
+        <div class="col-md-2 "></div>
+        @for (int i = Data.StartYear; i <= Data.EndYear; i++)
+        {
+            <div class="col-md-2 border"> 
+                @(i) 
+                @if (Data.YearCommentCache.ContainsKey(i.ToString()))
+                {
+                    <sup class="badge-warning badge" data-toggle="tooltip" data-placement="top" title="@(Data.YearCommentCache[i.ToString()])"> i </sup>
+                }
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-md-2 border-bottom"></div>
+        @for (int i = Data.StartYear; i <= Data.EndYear; i++)
+        {
+            <div class="col-md-1 border">Men</div>
+            <div class="col-md-1 border">Women</div>
+        }
+    </div>
+</div>
+

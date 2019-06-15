@@ -1,0 +1,33 @@
+﻿@using Newtonsoft.Json
+
+<h2>@(Model.Type)  births per year</h2>
+<figure class="bg-light bg-border">
+    <div id="region-line-chart-@(Model.Type)" class=""></div>
+    <figcaption class="figure-caption text-center padding margin-4">
+        <svg xmlns="http://www.w3.org/2000/svg" style="width:20px; height:20px;" xmlns:ct="http://gionkunz.github.com/chartist-js/ct">
+            <g xmlns="http://www.w3.org/2000/svg" class="ct-series ct-series-a" xmlns:ct="http://gionkunz.github.com/chartist-js/ct" ct:series-name="Women Births">
+                <line class="ct-bar" x1="10" y1="0" x2="10" y2="20" ct:value="" />
+            </g>
+        </svg>
+        @(Model.Type) Births per year in @(Model.Name)
+    </figcaption>
+</figure>
+<script>
+    new Chartist.Line('#region-line-chart-@(Model.Type)', {
+        labels: @(JsonConvert.SerializeObject(Model.Years)),
+        series: [
+            {
+                name: "Men Births",
+                data: @(JsonConvert.SerializeObject(Model.data))
+                }
+        ]
+    },
+    {
+        fullWidth: true,
+        chartPadding: {
+            right: 40
+        }
+    });
+
+</script>
+
