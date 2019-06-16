@@ -256,5 +256,15 @@ namespace CSB
             return RegionHierachicalCache;
         }
 
+        public static Dictionary<string,string> getRegionListForJs()
+        {
+            for (int i =0; i<rawData.data.Count(); i += 10)
+            {
+                string tmp = GetRegionName(rawData.data[i].Key[0]);
+            }
+
+            return RegionNameCache;
+        }
+
     }
 }
