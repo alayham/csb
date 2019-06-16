@@ -145,6 +145,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chartist.css" />
     <Content Include="Content\chartist.min.css" />
+    <Content Include="Content\images\child.jpg" />
+    <Content Include="Content\images\kommuner.svg" />
     <Content Include="Scripts\chartist.js" />
     <Content Include="Scripts\chartist.min.js" />
     <Content Include="favicon.ico" />
@@ -194,6 +196,7 @@
     <Content Include="Views\Region\Code.cshtml" />
     <Content Include="Views\Region\_RegionIndexRow.cshtml" />
     <Content Include="Views\Shared\_MenuItem.cshtml" />
+    <Content Include="Views\Shared\_map.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

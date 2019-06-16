@@ -14,9 +14,22 @@
 
 <div class="row mt-5">
     <div class="col-12 col-md-6">
-        @Html.Partial("_RegionGenderLineChart", new { Years = Model.Years, data = Model.Men, Type = "Men", Name=Model.Name })
+        @Html.Partial("_RegionGenderLineChart", new { Years = Model.Years, data = Model.Men, Type = "Men", Name = Model.Name })
     </div>
     <div class="col-12 col-md-6">
-        @Html.Partial("_RegionGenderLineChart", new { Years = Model.Years, data = Model.Women, Type = "Women" , Name = Model.Name })
+        @Html.Partial("_RegionGenderLineChart", new { Years = Model.Years, data = Model.Women, Type = "Women", Name = Model.Name })
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <a role="button" href="#" data-toggle="collapse" data-target="#region-select" aria-controls="region-select">
+            <h5 class="card-titleg">
+                Choose another region
+            </h5>
+        </a>
+        <div id="region-select" class="collapse row">
+            @Html.Partial("_map", Model.Key)
+        </div>
     </div>
 </div>

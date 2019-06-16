@@ -17,9 +17,11 @@
     string RegionName = Data.GetRegionName(item.Key);
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title" data-toggle="collapse" data-target="#region-@(item.Key)" aria-controls="region-@(item.Key)">
-                @(RegionName)
-            </h5>
+            <a role="button" href="#" data-toggle="collapse" data-target="#region-@(item.Key)" aria-controls="region-@(item.Key)">
+                <h5 class="card-titleg" >
+                    @(RegionName)
+                </h5>
+            </a>
             <ul id="region-@(item.Key)" class="collapse row list-unstyled">
                 @foreach (int index in item.Value)
                 {
