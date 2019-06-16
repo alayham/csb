@@ -6,11 +6,9 @@ $(document).ready(function () {
     $('.kommun path').click(function () {
                 var id = this.id;
                 window.location = "/region/code/" + id;
-    });
-    $('.kommun path').mouseenter(function () {
+    }).mouseenter(function () {
         $('#kommun-name').text("View data for " + Names[this.id]);
-    });
-    $('.kommun path').mouseleave(function () {
+    }).mouseleave(function () {
         $('#kommun-name').text("  ");
     })
 
