@@ -13,6 +13,7 @@ namespace CSB.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Title = "Browse by region";
             return View();
         }
         public ActionResult Code()
@@ -29,6 +30,7 @@ namespace CSB.Controllers
             if (index > 0)
             {
                 RegionViewModel model = new RegionViewModel(index);
+                ViewBag.Title = "Browse data for " + model.Name;
                 return View(model);
             } else
             {

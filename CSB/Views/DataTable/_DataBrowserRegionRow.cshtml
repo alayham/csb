@@ -15,7 +15,7 @@
     <div class="col col-md-2">
         @if (summaryRow)
         {
-            <div type="button" class="btn btn-outline btn-sm border-0" data-toggle="collapse" data-target="#region-@(data[Model].Key[0])" aria-expanded="false" aria-controls="region-@(data[Model].Key[0])">
+            <div role="button" class="btn btn-outline btn-sm border-0" data-toggle="collapse" data-target="#region-@(data[Model].Key[0])" aria-expanded="false" aria-controls="region-@(data[Model].Key[0])">
                 @(Data.GetRegionName(data[Model].Key[0]))
             </div>
         }
