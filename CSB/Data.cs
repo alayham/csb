@@ -18,7 +18,8 @@ namespace CSB
         public static Dictionary<string, List<int>> RegionHierachicalCache = new Dictionary<string, List<int>>();
         public static Dictionary<string, string> RegionCommentCache;
         public static Dictionary<string, string> YearCommentCache;
-        
+        public static Dictionary<string, Dictionary<string, Dictionary<string, int>>> JsDataCache = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
+
         public static void SetData(RawData data)
         {
             rawData = data;
@@ -210,14 +211,6 @@ namespace CSB
             if (!RegionKeyCache.ContainsKey(name)) RegionKeyCache.Add(name, key);
         }
 
-
-        public static void SaveRegionCache(int index, string key, string name)
-        {
-            if (!RegionNameCache.ContainsKey(key)) RegionNameCache.Add(key, name);
-            if (!RegionIndexCache.ContainsKey(key)) RegionIndexCache.Add(key, index);
-            if (!RegionKeyCache.ContainsKey(name)) RegionKeyCache.Add(name, key);
-        }
-
         public static void SaveRegionCache(int index, string key)
         {
             if (!RegionIndexCache.ContainsKey(key)) RegionIndexCache.Add(key, index);
@@ -256,14 +249,35 @@ namespace CSB
             return RegionHierachicalCache;
         }
 
-        public static Dictionary<string,string> getRegionListForJs()
+        public static Dictionary<string,string> GetRegionListForJs()
         {
             for (int i =0; i<rawData.data.Count(); i += 10)
             {
-                string tmp = GetRegionName(rawData.data[i].Key[0]);
+                GetRegionName(rawData.data[i].Key[0]);
             }
 
             return RegionNameCache;
+        }
+
+        public static Dictionary<string,Dictionary<string, Dictionary<string, int>>> GetDataForJs()
+        {
+            Dictionary<string, string> codes = GetRegionListForJs();
+            foreach( KeyValuePair<string, string> item in codes)
+            {
+                if (!JsDataCache.ContainsKey(item.Key))
+                {
+                    JsDataCache.Add(item.Key, new Dictionary<string, Dictionary<string, int>>());
+                    int index = getRegionIndex(item.Key);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        string year = Data.rawData.data[index + i].Key[3];
+                        JsDataCache[item.Key].Add(Data.rawData.data[index + i].Key[3], new Dictionary<string, int>());
+                        JsDataCache[item.Key][year].Add("Men", int.Parse(Data.rawData.data[index + i].values[0]));
+                        JsDataCache[item.Key][year].Add("Women", int.Parse(Data.rawData.data[index + i + 5].values[0]));
+                    }
+                }
+            }
+            return JsDataCache;
         }
 
     }

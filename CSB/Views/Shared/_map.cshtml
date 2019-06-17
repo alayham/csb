@@ -1,6 +1,6 @@
 ﻿@using  Newtonsoft.Json
 <script>
-    @{ string Names = JsonConvert.SerializeObject(Data.getRegionListForJs()); }
+    @{ string Names = JsonConvert.SerializeObject(Data.GetRegionListForJs()); }
         const Names =  @Html.Raw(Names);
 $(document).ready(function () {
     $('.kommun path').click(function () {

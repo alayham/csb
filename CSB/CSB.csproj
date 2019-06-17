@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\DataTableController.cs" />
+    <Compile Include="Controllers\InteractiveController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="App_Start\DataConfig.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Models\DataValue.cs" />
     <Compile Include="Models\RawMetaData.cs" />
     <Compile Include="Models\Variable.cs" />
+    <Compile Include="Models\ViewModels\MapViewModel.cs" />
     <Compile Include="Models\ViewModels\MenuItem.cs" />
     <Compile Include="Models\ViewModels\RegionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -197,6 +199,7 @@
     <Content Include="Views\Region\_RegionIndexRow.cshtml" />
     <Content Include="Views\Shared\_MenuItem.cshtml" />
     <Content Include="Views\Shared\_map.cshtml" />
+    <Content Include="Views\Interactive\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
