@@ -17,13 +17,15 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <div id="vue-map" class="container">
     <div class="row">
-        <div class="col col-6" v-if="selected.code">
-            <h2>Child birth data for {{selected.name}}</h2>
-            <region-data :data="Data[selected.code]"></region-data>
-            <h2>Total child birth by gender in {{selected.name}}</h2>
+        <div class="col col-6">
+            <div v-if="selected.code">
+                <h2>Child birth data for {{selected.name}}</h2>
+                <region-data :data="Data[selected.code]"></region-data>
+                <h2>Total child birth by gender in {{selected.name}}</h2>
+            </div>
+            <div v-if="!selected.code">Please select a region on the map</div>
             <div id="percentage-chart"></div>
         </div>
-        <div class="col col-6" v-if="!selected.code">Please select a region on the map</div>
         <div class="col col-6">
             <figure>
                 <svg xmlns:svg="http://www.w3.org/2000/svg"
