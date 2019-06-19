@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\AccumulativeController.cs" />
     <Compile Include="Controllers\DataTableController.cs" />
     <Compile Include="Controllers\InteractiveController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
@@ -200,6 +201,7 @@
     <Content Include="Views\Shared\_MenuItem.cshtml" />
     <Content Include="Views\Shared\_map.cshtml" />
     <Content Include="Views\Interactive\Index.cshtml" />
+    <Content Include="Views\Accumulative\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
