@@ -17,10 +17,13 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <div id="vue-map" class="container">
     <div class="row">
-        <div class="col col-6">
-            <h5>Selected Kommun: {{selected.name}}</h5>
+        <div class="col col-6" v-if="selected.code">
+            <h2>Child birth data for {{selected.name}}</h2>
             <region-data :data="Data[selected.code]"></region-data>
+            <h2>Total child birth by gender in {{selected.name}}</h2>
+            <div id="percentage-chart"></div>
         </div>
+        <div class="col col-6" v-if="!selected.code">Please select a region on the map</div>
         <div class="col col-6">
             <figure>
                 <svg xmlns:svg="http://www.w3.org/2000/svg"
@@ -43,22 +46,22 @@
                                         <dc:title>Lokal_Profil</dc:title>
                                     </cc:Agent>
                                 </dc:creator>
-                                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/2.5/" />
+                                <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/2.5/"></cc:license>
                                 <dc:rights>
                                     <cc:Agent>
                                         <dc:title>cc-by-sa-2.5</dc:title>
                                     </cc:Agent>
                                 </dc:rights>
                                 <dc:format>image/svg+xml</dc:format>
-                                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" ></dc:type>
                             </cc:Work>
                             <cc:License rdf:about="http://creativecommons.org/licenses/by-sa/2.5/">
-                                <cc:permits rdf:resource="http://web.resource.org/cc/Reproduction" />
-                                <cc:permits rdf:resource="http://web.resource.org/cc/Distribution" />
-                                <cc:requires rdf:resource="http://web.resource.org/cc/Notice" />
-                                <cc:requires rdf:resource="http://web.resource.org/cc/Attribution" />
-                                <cc:permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
-                                <cc:requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+                                <cc:permits rdf:resource="http://web.resource.org/cc/Reproduction" ></cc:permits>
+                                <cc:permits rdf:resource="http://web.resource.org/cc/Distribution" ></cc:permits>
+                                <cc:requires rdf:resource="http://web.resource.org/cc/Notice" ></cc:requires>
+                                <cc:requires rdf:resource="http://web.resource.org/cc/Attribution" ></cc:requires>
+                                <cc:permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" ></cc:permits>
+                                <cc:requires rdf:resource="http://web.resource.org/cc/ShareAlike" ></cc:requires>
                             </cc:License>
                         </rdf:RDF>
                     </metadata>
@@ -364,19 +367,19 @@
         data: function () { return {} },
         props: ['data'],
         mounted: function () {
-            console.log(data);
+
         },
         template: `
         <div class="region-data">
-            <div class="row">
+            <div class="row bg-info text-center border-bottom">
                 <div class="col-4"></div>
                 <div class="col-4">Men</div>
                 <div class="col-4">Women</div>
             </div>
-            <div class="row" v-for="(yeardata, year) in data"  :index="year">
-                <div class="col-4">{{year}}</div>
-                <div class="col-4">{{yeardata.Men}}</div>
-                <div class="col-4">{{yeardata.Women}}</div>
+            <div class="row border-bottom" v-for="(yeardata, year) in data"  :index="year">
+                <div class="col-4 bg-info text-center">{{year}}</div>
+                <div class="col-4 text-right border-right">{{yeardata.Men}}</div>
+                <div class="col-4 text-right border-right">{{yeardata.Women}}</div>
             </div>
         </div>
         `
@@ -389,14 +392,30 @@
             selected: {
                 code: "",
                 name: ""
-            }
+            },
+            percentageChart: null,
         },
         methods: {
             showData: function (code) {
                 this.selected.code = code;
                 this.selected.name = this.RegionNameCache[code.toString()];
-                console.log(code.toString(),  this.Data[code.toString()]);
-            }
+                this.percentageChart = new Chartist.Pie(
+                    '#percentage-chart',
+                    {
+                        labels: ['Men', 'Women'],
+                        series: this.getTotalByGender(code),
+                    });
+            },
+            getTotalByGender(code) {
+                const data = this.Data[code];
+                let men = 0;
+                let women = 0;
+                for (let year in data) {
+                    men += data[year].Men;
+                    women += data[year].Women;
+                }
+                return [men, women];
+            },
         }
     });
 </script>
