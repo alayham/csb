@@ -1,11 +1,11 @@
-﻿using CSB.Models.ViewModels;
+﻿using SCB.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CSB.Controllers
+namespace SCB.Controllers
 {
     public class RegionController : Controller
     {

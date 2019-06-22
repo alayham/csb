@@ -1,4 +1,4 @@
-﻿@model CSB.Models.ViewModels.MapViewModel
+﻿@model SCB.Models.ViewModels.MapViewModel
 <style type='text/css' id='style_css_sheet'>
         .kommun {
             fill: #ccc;
@@ -21,8 +21,8 @@
         <div class="col col-6">
             <div v-if="selectedCount > 0">
                 <h2>Selected regions</h2>
-                <ul class="row">
-                    <li class="col-6" v-for="region in selected">{{region}}</li>
+                <ul class="row list-unstyled">
+                    <li class="col-6" v-for="(region, code) in selected"><button role="button" class="btn" v-on:click="showData(code)" v-bind:key="code">{{region}}</button></li>
                 </ul>
                 <h2>Total Child birth data by year</h2>
                 <region-data :data="selectedData"></region-data>
@@ -408,13 +408,17 @@
                 };
                 this.selectedCount = Object.keys(this.selected).length;
                 this.getTotlByYear();
-                this.percentageChart = new Chartist.Pie(
-                    '#percentage-chart',
-                    {
-                        labels: ['Men', 'Women'],
-                        series: this.getTotalByGender(),
-                    }
-                );
+                if (this.selectedCount > 0) {
+                    this.percentageChart = new Chartist.Pie(
+                        '#percentage-chart',
+                        {
+                            labels: ['Men', 'Women'],
+                            series: this.getTotalByGender(),
+                        }
+                    );
+                } else {
+                    this.percentageChart.update({ series: [] });
+                }
             },
             getTotlByYear: function () {
                 let result = {};
@@ -431,7 +435,6 @@
                 this.selectedData = result;
             },
             getTotalByGender: function () {
-                console.log(this.selectedData);
                 const data = this.selectedData;
                 let men = 0;
                 let women = 0;
@@ -439,7 +442,6 @@
                     men += data[year].men;
                     women += data[year].women;
                 }
-                console.log([men, women]);
                 return [men, women];
             },
             classOf: function (code) {

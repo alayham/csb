@@ -5,10 +5,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Web;
-using CSB.Models;
+using SCB.Models;
 using Newtonsoft.Json;
 
-namespace CSB
+namespace SCB
 {
     public class DataConfig
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CSB.Models.ViewModels;
+using SCB.Models.ViewModels;
 
-namespace CSB.Controllers
+namespace SCB.Controllers
 {
     public class AccumulativeController : Controller
     {

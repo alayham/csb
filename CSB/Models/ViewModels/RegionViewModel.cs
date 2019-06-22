@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using CSB.Models;
+using SCB.Models;
 
-namespace CSB.Models.ViewModels
+namespace SCB.Models.ViewModels
 {
     public class RegionViewModel
     {

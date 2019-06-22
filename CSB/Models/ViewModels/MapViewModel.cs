@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
 
-namespace CSB.Models.ViewModels
+namespace SCB.Models.ViewModels
 {
     public class MapViewModel
     {

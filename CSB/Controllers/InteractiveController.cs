@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using CSB.Models.ViewModels;
+using SCB.Models.ViewModels;
 
-namespace CSB.Controllers
+namespace SCB.Controllers
 {
     public class InteractiveController : Controller
     {
