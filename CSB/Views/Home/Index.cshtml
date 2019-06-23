@@ -1,11 +1,28 @@
 ﻿@{
-    ViewBag.Title = "Data Table";
+    ViewBag.Title = "SCB Assignment";
 }
 
-    <div class="jumbotron">
-        <h1 class="display-4">Welcome to the SCB Assignment</h1>
-        <p class="lead">The assignmentis about downloading Sweden total birth statistics from SCB and displaying it.</p>
-        <hr class="my-4">
-        @Html.ActionLink("View the full birth statistics table", "Index", "DataTable", new { }, new { @class = "btn btn-primary btn-lg" })
-        @Html.ActionLink("Browse the birth data by Län", "DataBrowser", "DataTable", new { }, new { @class = "btn btn-primary btn-lg" })
-    </div>
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to the SCB Assignment</h1>
+    <p class="lead">The assignmentis about downloading Sweden total birth statistics from SCB and displaying it.</p>
+    <hr class="my-4">
+    @Html.ActionLink("View the full birth statistics table", "Index", "DataTable", new { }, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("Browse the birth data by Län", "DataBrowser", "DataTable", new { }, new { @class = "btn btn-primary btn-lg" })
+</div>
+<div class="jumbotron">
+    <h1 class="display-4">Focus on a city</h1>
+    <p class="lead">You can browse the birth statistics by city or a group of cities.</p>
+    <hr class="my-4">
+    @Html.ActionLink("View statistics by Kommun", "Index", "Region", new { }, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("view accumulative statistics by kommun", "Index", "Accumulative", new { }, new { @class = "btn btn-primary btn-lg" })
+</div>
+</div>
+<div class="jumbotron">
+    <h1 class="display-4">Quick Demo</h1>
+    <p class="lead">Preview the assignment solution in this quick video.</p>
+    <video controls width="100%">
+        <source src="/Content/Video/demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
